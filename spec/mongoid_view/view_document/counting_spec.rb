@@ -11,9 +11,9 @@ module MongoidView
     class ExampleDocWrapper
       include MongoidView::ViewDocument
 
-      field :name_count, type: Integer
-
       source_model(::MongoidView::TestClasses::SourceViewDoc)
+
+      field :name_count, type: Integer
 
       def self.count_all_names_query
         group_by(

@@ -33,5 +33,9 @@ module MongoidView
     def unwind(expr)
       ::MongoidView::Expressions::Unwind.new(expr)
     end
+
+    def lookup(from_collection_name, foreign_field:, local_field: "_id", as: from_collection_name)
+      ::MongoidView::Expressions::Lookup.new(from_collection_name, foreign_field, local_field, as)
+    end
   end
 end

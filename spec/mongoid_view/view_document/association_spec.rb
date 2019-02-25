@@ -16,24 +16,19 @@ module MongoidView
     end
 
     class ExampleAssociationDocWrapper
-      include Mongoid::Document
-
       include MongoidView::ViewDocument
+
+      source_model("::MongoidView::TestClasses::SourceViewDocParent")
 
       field :name, type: String
 
       embeds_many :source_view_doc_children, :inverse_of => nil
 
-      source_model("::MongoidView::TestClasses::SourceViewDocParent")
-
       def self.parents_with_children_query
-        expr(
-          {"$lookup" => {
-            "from" => ::MongoidView::TestClasses::SourceViewDocChild.collection_name.to_s,
-            "localField" => "_id",
-            "foreignField" => "source_view_doc_parent_id",
-            "as" => "source_view_doc_children"
-          }}
+        lookup(
+          ::MongoidView::TestClasses::SourceViewDocChild.collection_name.to_s,
+          foreign_field: "source_view_doc_parent_id",
+          as: "source_view_doc_children"
         )
       end
 

@@ -5,6 +5,7 @@ module MongoidView
     eager_autoload do
       autoload :Raw
       autoload :Group
+      autoload :Lookup
       autoload :Project
       autoload :Sort
       autoload :Unwind

@@ -2,8 +2,14 @@ require "spec_helper"
 
 module MongoidView
   module TestClasses
+    class SourceDoc
+      include Mongoid::Document
+    end
+
     class ExampleDoc
       include MongoidView::ViewDocument
+
+      source_model("::MongoidView::TestClasses::SourceDoc")
     end
   end
 end
