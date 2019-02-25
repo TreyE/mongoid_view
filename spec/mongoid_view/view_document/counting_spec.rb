@@ -16,7 +16,7 @@ module MongoidView
       field :name_count, type: Integer
 
       def self.count_all_names_query
-        group_by(
+        group(
           "$name",
           {"name_count" => {"$sum" => 1}}
         )

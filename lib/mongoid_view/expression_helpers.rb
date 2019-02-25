@@ -5,7 +5,7 @@ module MongoidView
       ::MongoidView::Expressions::Raw.new({value => {"$last" => lookup_expression}})
     end
 
-    def group_by(id_stuff, other_props = {})
+    def group(id_stuff, other_props = {})
       ::MongoidView::Expressions::Group.new(
         id_stuff,
         other_props
@@ -22,7 +22,7 @@ module MongoidView
       })
     end
 
-    def sort_on(expr)
+    def sort(expr)
       ::MongoidView::Expressions::Sort.new(expr)
     end
 
