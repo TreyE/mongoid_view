@@ -9,6 +9,7 @@ module MongoidView
     autoload :Expressions
     autoload :Pipeline
     autoload :ExpressionHelpers
+    autoload :ResultWrapper
     autoload :ViewDocument
   end
 end

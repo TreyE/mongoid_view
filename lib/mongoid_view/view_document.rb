@@ -6,6 +6,19 @@ module MongoidView
         extend ::MongoidView::ExpressionHelpers
 
         store_in(collection: ("mongoid_views." + self.name.collectionize))
+
+        def self.source_model(s_model)
+          s_model_constant = s_model.kind_of?(String) ? s_model.constantize : s_model
+          @source_collection = s_model_constant.collection
+        end
+
+        def self.source_collection
+          @source_collection
+        end
+
+        def self.wrap_query(q, opts = {})
+          ::MongoidView::ResultWrapper.new(self, self.source_collection, q.to_pipeline, opts)
+        end
       end
     end
   end

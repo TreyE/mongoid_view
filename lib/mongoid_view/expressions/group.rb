@@ -13,7 +13,7 @@ module MongoidView
     def to_hash
       {
         "$group" => {
-          "_id" => @id_grouping.to_hash
+          "_id" => @id_grouping
         }.merge(@other_props.to_hash)
       }
     end
